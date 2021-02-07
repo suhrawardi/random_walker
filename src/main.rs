@@ -4,9 +4,10 @@ use rand_distr::{LogNormal};
 use rand::seq::SliceRandom;
 
 
-const COLORS: [Rgb<u8>; 4] = [
+const COLORS: [Rgb<u8>; 5] = [
     OLIVEDRAB,
     DARKOLIVEGREEN,
+    OLIVE,
     OLIVE,
     OLIVE
 ];
@@ -40,9 +41,20 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 
 fn view(app: &App, model: &Model, frame: Frame) {
     if frame.nth() == 0 {
-        frame.clear(DARKGREEN);
+        frame.clear(BLACK);
     }
     let draw = app.draw();
+
+    let log_normal = LogNormal::new(2.0, 3.0).unwrap();
+    let i: f32 = log_normal.sample(&mut rand::thread_rng()) % 300.0;
+
+    if i > 298.0 {
+        println!("{:?}", i);
+        draw.rect()
+            .x_y(0.0,0.0)
+            .w_h(600.0,600.0)
+            .color(hsla(0.0,0.0,0.0,0.005));
+    }
 
     let mut rng = rand::thread_rng();
     let color_obj: Rgb<u8> = *COLORS.choose(&mut rng).unwrap();
@@ -55,7 +67,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
         .color(color);
 
     draw.to_frame(app, &frame).unwrap();
-    if frame.nth() % 1000 == 0 {
+    if frame.nth() % 10000 == 0 {
         let file_path = captured_frame_path(app, &frame);
         println!("Saving frame {:?} to {:?}", frame.nth(), file_path);
         app.main_window().capture_frame(file_path);
@@ -93,12 +105,23 @@ fn prob(coord: f32) -> bool {
     return prob;
 }
 
+fn step() -> f32 {
+    let log_normal = LogNormal::new(2.0, 3.0).unwrap();
+    let i: f32 = log_normal.sample(&mut rand::thread_rng()) % 300.0;
+
+    if i > 295.0 {
+        return 2.0;
+    } else {
+        return 1.0;
+    }
+}
+
 fn next_min(coord: f32) -> f32 {
     if coord <= -300.0 {
         return coord + 1.0;
     } else {
         if coord > 0.0 && prob(coord) {
-            return coord + 1.0;
+            return coord + step();
         } else {
             return coord - 1.0;
         }
@@ -110,7 +133,7 @@ fn next_plus(coord: f32) -> f32 {
         return coord - 1.0;
     } else {
         if coord < 0.0 && prob(coord) {
-            return coord - 1.0;
+            return coord - step();
         } else {
             return coord + 1.0;
         }
