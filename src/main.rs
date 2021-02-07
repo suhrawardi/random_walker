@@ -49,7 +49,6 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let i: f32 = log_normal.sample(&mut rand::thread_rng()) % 300.0;
 
     if i > 299.0 {
-        println!("{:?}", i);
         draw.rect()
             .x_y(0.0,0.0)
             .w_h(600.0,600.0)
@@ -131,7 +130,7 @@ fn next_min(coord: f32) -> f32 {
     if coord <= -300.0 {
         return coord + 1.0;
     } else {
-        if coord > 0.0 && prob(coord) {
+        if coord > 0.0 && coord < 295.0 && prob(coord) {
             return coord + step();
         } else {
             return coord - 1.0;
