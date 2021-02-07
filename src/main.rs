@@ -142,7 +142,7 @@ fn next_plus(coord: f32) -> f32 {
     if coord >= 300.0 {
         return coord - 1.0;
     } else {
-        if coord < 0.0 && prob(coord) {
+        if coord < 0.0 && coord > -295.0 && prob(coord) {
             return coord - step();
         } else {
             return coord + 1.0;
