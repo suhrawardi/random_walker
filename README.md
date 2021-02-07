@@ -1,5 +1,6 @@
 # Random Walker
 
+
 ## Howto
 
 It's written in Rust, so install [Rust](https://www.rust-lang.org/tools/install) first:
@@ -9,6 +10,10 @@ It's written in Rust, so install [Rust](https://www.rust-lang.org/tools/install)
 And then run:
 
     $ cargo run --release
+
+Or if you have ImageMagick installed, run it with:
+
+    $ ./run.sh
 
 
 ## Example

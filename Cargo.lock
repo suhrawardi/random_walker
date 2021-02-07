@@ -542,15 +542,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f6d018fb95a0b59f854aed68ecd96ce2b80af7911b92b1fed3c4b1fa516b91b"
 
 [[package]]
-name = "first"
-version = "0.1.0"
-dependencies = [
- "nannou",
- "rand 0.8.3",
- "rand_distr",
-]
-
-[[package]]
 name = "fixedbitset"
 version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2068,6 +2059,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cbf7e9e623549b0e21f6e97cf8ecf247c1a8fd2e8a992ae265314300b2455d5c"
 dependencies = [
  "rand_core 0.3.1",
+]
+
+[[package]]
+name = "random-walker"
+version = "0.1.0"
+dependencies = [
+ "nannou",
+ "rand 0.8.3",
+ "rand_distr",
 ]
 
 [[package]]
