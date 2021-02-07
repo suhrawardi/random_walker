@@ -48,7 +48,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     let log_normal = LogNormal::new(2.0, 3.0).unwrap();
     let i: f32 = log_normal.sample(&mut rand::thread_rng()) % 300.0;
 
-    if i > 298.0 {
+    if i > 299.0 {
         println!("{:?}", i);
         draw.rect()
             .x_y(0.0,0.0)
@@ -56,15 +56,24 @@ fn view(app: &App, model: &Model, frame: Frame) {
             .color(hsla(0.0,0.0,0.0,0.005));
     }
 
-    let mut rng = rand::thread_rng();
-    let color_obj: Rgb<u8> = *COLORS.choose(&mut rng).unwrap();
-    let color = Srgb::<f32>::from_format(color_obj).into_linear();
+    let j: f32 = log_normal.sample(&mut rand::thread_rng()) % 300.0;
+    if j > 298.0 {
+        draw.line()
+            .start(model.p)
+            .end(model.s)
+            .weight(1.0)
+            .color(SIENNA);
+    } else {
+        let mut rng = rand::thread_rng();
+        let color_obj: Rgb<u8> = *COLORS.choose(&mut rng).unwrap();
+        let color = Srgb::<f32>::from_format(color_obj).into_linear();
+        draw.line()
+            .start(model.p)
+            .end(model.s)
+            .weight(1.0)
+            .color(color);
+    }
 
-    draw.line()
-        .start(model.p)
-        .end(model.s)
-        .weight(1.0)
-        .color(color);
 
     draw.to_frame(app, &frame).unwrap();
     if frame.nth() % 10000 == 0 {
@@ -109,7 +118,9 @@ fn step() -> f32 {
     let log_normal = LogNormal::new(2.0, 3.0).unwrap();
     let i: f32 = log_normal.sample(&mut rand::thread_rng()) % 300.0;
 
-    if i > 295.0 {
+    if i > 299.0 {
+        return 3.0;
+    } else if i > 295.0 {
         return 2.0;
     } else {
         return 1.0;
