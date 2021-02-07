@@ -11,4 +11,6 @@ And then run:
     $ cargo run --release
 
 
+## Example
+
 ![Example Image](./random-walker.gif)
