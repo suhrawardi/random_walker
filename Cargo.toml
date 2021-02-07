@@ -1,5 +1,5 @@
 [package]
-name = "first"
+name = "random-walker"
 version = "0.1.0"
 authors = ["jarra <suhrawardi@gmail.com>"]
 edition = "2018"
