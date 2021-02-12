@@ -18,4 +18,5 @@ Or if you have ImageMagick installed, run it with:
 
 ## Example
 
-![Example Movie](./random-walker.mp4)
+You can watch the example video [here](https://github.com/suhrawardi/random_walker/issues/1)
+Or download it [here](https://user-images.githubusercontent.com/32413/107788258-7d2f5f80-6d50-11eb-8733-02cc3276547e.mp4)
