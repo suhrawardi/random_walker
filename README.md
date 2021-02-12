@@ -18,4 +18,4 @@ Or if you have ImageMagick installed, run it with:
 
 ## Example
 
-![Example Image](./random-walker.gif)
+![Example Movie](./random-walker.mp4)
